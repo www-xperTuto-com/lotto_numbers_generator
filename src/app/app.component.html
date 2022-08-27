@@ -1,0 +1,64 @@
+
+<table>
+  <th>5 Chiffres</th>
+  <th>chiffre de chance</th>
+  <tbody>
+  <tr>
+    <td>
+      <table>
+        <th>index</th>
+        <th>Number</th>
+        <th>Occurence</th>
+        <tbody>
+        <tr *ngFor=" let row of outPutBigTable; let index = index">
+          <td>{{index +1 }}</td>
+          <td>{{row.index}}</td>
+          <td>{{row.result}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <div class="result">
+        <h3>Result</h3>
+
+        <div class="chiffres_list" *ngIf="chiffresFinaux.length > 0">
+          <div   *ngFor="let chiffre of chiffresFinaux">
+            <div class="chiffre">{{chiffre}}</div>
+          </div>
+          <div class="chiffreChance">{{chiffreChance}}</div>
+        </div>
+
+        <button (click)="generateMultiple(4)" value="générer les chiffres">générer les chiffres</button>
+        <ng-container *ngIf="chiffresFinaux.length > 0">
+          <div class="chiffre_list_multi"  *ngFor="let range of totalRanges" >
+            <div class="chiffres_list">
+              <div   *ngFor="let chiffre of range.chiffresFinaux">
+                <div class="chiffre">{{chiffre}}</div>
+              </div>
+              <div class="chiffreChance">{{range.chiffreChance}}</div>
+            </div>
+          </div>
+
+
+        </ng-container>
+      </div>
+
+      <table class="little">
+        <th>Number</th>
+        <th>Occurence</th>
+        <tbody>
+        <tr *ngFor=" let row of outPutLittleTable">
+          <td>{{row.index}}</td>
+          <td>{{row.result}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
