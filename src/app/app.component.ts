@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   chiffresFinaux: any = [];
   chiffreChance: any;
   selectedChanceNumber: any = [];
+  winnerTable: any = [];
 
   constructor() {
   }
@@ -64,19 +65,32 @@ export class AppComponent implements OnInit {
     }
   }
 
+  hasWins(minCheck: number) {
+    this.winnerTable = [];
+    this.inputBigTable.forEach((row: any) => {
+      this.totalRanges.forEach((selectedRow: any) => {
+        const diff = row.filter((x: any) => !selectedRow.chiffresFinaux.includes(x));
+        if (diff.length == minCheck) {
+          this.winnerTable.push(row);
+        }
+      })
+
+    })
+  }
+
   generate() {
     const bigTable = this.getArrayValues(JSON.parse(JSON.stringify(this.outPutBigTable)));
     const littleTable = this.getArrayValues(JSON.parse(JSON.stringify(this.outPutLittleTable)));
 
 
-    const chiffre_1 = bigTable[this.generateRandomInteger(1, 20) - 1];
-    const chiffre_2 = bigTable[this.generateRandomInteger(1, 20) - 1];
+    const chiffre_1 = bigTable[this.generateRandomInteger(1, 25) - 1];
+    const chiffre_2 = bigTable[this.generateRandomInteger(1, 25) - 1];
 
-    const chiffre_3 = bigTable[this.generateRandomInteger(20, 40) - 1];
-    const chiffre_4 = bigTable[this.generateRandomInteger(20, 40) - 1];
+    const chiffre_3 = bigTable[this.generateRandomInteger(1, 25) - 1];
+    const chiffre_4 = bigTable[this.generateRandomInteger(1, 25) - 1];
 
 
-    const chiffre_5 = bigTable[this.generateRandomInteger(40, 49) - 1];
+    const chiffre_5 = bigTable[this.generateRandomInteger(1, 25) - 1];
     this.chiffresFinaux = [chiffre_1, chiffre_2, chiffre_3, chiffre_4, chiffre_5];
 
     this.chiffreChance = littleTable[this.generateRandomInteger(1, 6) - 1];
@@ -132,6 +146,7 @@ export class AppComponent implements OnInit {
                 chiffresFinaux: this.chiffresFinaux.sort((a: any, b: any) => (a > b ? 1 : -1)),
                 chiffreChance: this.chiffreChance
               });
+
               this.selectedChanceNumber.push(this.chiffreChance)
               ngRange++;
 

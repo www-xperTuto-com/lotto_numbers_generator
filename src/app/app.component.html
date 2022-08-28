@@ -21,6 +21,7 @@
     <td>
       <div class="result">
         <h3>Result</h3>
+        {{winnerTable |json }}
 
         <div class="chiffres_list" *ngIf="chiffresFinaux.length > 0">
           <div   *ngFor="let chiffre of chiffresFinaux">
@@ -29,7 +30,14 @@
           <div class="chiffreChance">{{chiffreChance}}</div>
         </div>
 
-        <button (click)="generateMultiple(4)" value="générer les chiffres">générer les chiffres</button>
+        <button (click)="generateMultiple(4)" value="generate numbers">Generate numbers</button>
+        <br>
+        <button (click)="hasWins(0)" value="Check Wins">Check Wins 5 chiffres</button>
+        <button (click)="hasWins(1)" value="Check Wins">Check Wins 4 chiffres</button>
+        <button (click)="hasWins(2)" value="Check Wins">Check Wins 3 chiffres</button>
+        <button (click)="hasWins(3)" value="Check Wins">Check Wins 2 chiffres</button>
+        <button (click)="hasWins(4)" value="Check Wins">Check Wins 1 chiffre</button>
+
         <ng-container *ngIf="chiffresFinaux.length > 0">
           <div class="chiffre_list_multi"  *ngFor="let range of totalRanges" >
             <div class="chiffres_list">
